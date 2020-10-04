@@ -1,5 +1,5 @@
 # My first application
 
-*Description needed!*
+*ATM Simulator!*
 
-`code`
+`Coded in JAVA`
