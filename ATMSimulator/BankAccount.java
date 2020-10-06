@@ -1,4 +1,4 @@
-package BankingApp;
+package ATMSimulator;
 
 import java.util.Scanner;
 

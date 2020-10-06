@@ -9,26 +9,16 @@ import java.util.Scanner;
 public class mainapp {
     
     public static void main(String[] args) {
+
         Teacher Floricau = new Teacher(1,"Floricau",500);
-        Teacher Navrapescu = new Teacher(2,"Navrapescu",1500);
-        Teacher Bostan = new Teacher(3,"Bostan",1000);
+        Student Angi = new Student(1,"Angi",8);
 
         List<Teacher> teacherList = new ArrayList<>();
-
-        teacherList.add(Floricau);
-        teacherList.add(Navrapescu);
-        teacherList.add(Bostan);
-
-        Student Angi = new Student(1,"Angi",8);
-        Student Mihai = new Student(2,"Mihai",10);
-        Student Emi = new Student(3,"Emi",12);
-
         List<Student> studentList = new ArrayList<>();
 
+        teacherList.add(Floricau);
         studentList.add(Angi);
-        studentList.add(Mihai);
-        studentList.add(Emi);
-
+        
         School poli = new School(teacherList,studentList);
         
         int userOption=0;
@@ -99,7 +89,7 @@ public class mainapp {
                         }
                     }
                     else{
-                        System.out.println("Not enaught funds!");
+                        System.out.println("Not enough funds!");
                     }
                     break;
                 }
@@ -176,12 +166,6 @@ public class mainapp {
                                 iterator.remove();
                             }
                         }
-
-                        /* for(Teacher j:teacherList){
-                            if(j.getName().equals(userOptionName)){
-                                teacherList.remove(j);
-                            }
-                        } */
                     }
                     else{
                         System.out.println("Not a valid option!");
@@ -210,9 +194,10 @@ public class mainapp {
                         System.out.print("\n"+"Type in the name:");
                         userOptionName = scanner2.nextLine();
 
-                        for(Student j:studentList){
-                            if(j.getName().equals(userOptionName)){
-                                studentList.remove(j);
+                        for (Iterator<Student> iterator = studentList.iterator(); iterator.hasNext(); ) {
+                            Student value = iterator.next();
+                            if (value.getName().equals(userOptionName)) {
+                                iterator.remove();
                             }
                         }
                     }
