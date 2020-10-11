@@ -2,7 +2,6 @@ package SchoolManagementSystem;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class mainapp {
@@ -12,8 +11,8 @@ public class mainapp {
         Teacher Floricau = new Teacher(1, "Floricau", 500);
         Student Angi = new Student(1, "Angi", 8);
 
-        List<Teacher> teacherList = new ArrayList<>();
-        List<Student> studentList = new ArrayList<>();
+        ArrayList<Teacher> teacherList = new ArrayList<>();
+        ArrayList<Student> studentList = new ArrayList<>();
 
         teacherList.add(Floricau);
         studentList.add(Angi);
