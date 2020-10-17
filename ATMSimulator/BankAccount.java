@@ -9,9 +9,10 @@ public class BankAccount {
     String customerName;
     String customerID;
 
-    BankAccount(String customerName, String customerID){
-        this.customerName = customerName;
+    BankAccount(String customerID, String customerName, int balance){
         this.customerID = customerID;
+        this.customerName = customerName;
+        this.balance = balance;
     }
 
     void deposit(int amount){
@@ -44,19 +45,19 @@ public class BankAccount {
         int userOption = 0;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to this ATM " + customerName);
-        System.out.println("Your ID is " + customerID);
+        System.out.println("-------------------------------");
+        System.out.println("------Welcome to this ATM------");
+        System.out.println("-------------------------------");
+        System.out.println("User: " + customerID + " Name: " + customerName);
         System.out.print('\n');
+        do{
         System.out.println("1. Check account balance");
         System.out.println("2. Deposit into account");
         System.out.println("3. Withdraw from account");
         System.out.println("4. See previous transaction");
         System.out.println("5. Exit");
-
-        do{
-            System.out.println("------------------------------");
-            System.out.println("---Please enter your option---");
-            System.out.println("------------------------------");
+        System.out.print("Please enter your option:");
+            
             userOption = scanner.nextInt();
             System.out.println("\n");
 
@@ -102,7 +103,7 @@ public class BankAccount {
                     break;
                 
                 case 5:
-                    System.out.println("---Exiting...---");
+                    System.out.println("Exiting...");
                     break;
 
                 default:

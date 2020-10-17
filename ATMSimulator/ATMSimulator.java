@@ -1,35 +1,62 @@
 package ATMSimulator;
+
+import java.io.File;
 import java.util.Scanner;
 
 public class ATMSimulator {
     
-    public static void main(String[] args) {
-        String userOption;
-        String userInputName;
-        String userInputID;
+    public static void main(String[] args){
+        String filepath = "./ATMSimulator/users.txt";
+        String userInputPassword = "";
+        String userInputID = "";
+
+        String userName = "";
+        int userbalance = 0;
+
+        String tempID = "";
+        String tempPassword = "";
+        boolean found = false;  
 
         Scanner scanner = new Scanner(System.in);
-             
-        System.out.println("Would you like to create a new bank account? Yes/No");
-        userOption = scanner.next();
-        System.out.println(userOption);
-        if("Yes".equals(userOption)){
-            System.out.println("What is your name?");
-            userInputName = scanner.next();
-            System.out.println("What is your ID number?");
-            userInputID = scanner.next();
+        
+        System.out.println("Please enter your ID and password");
 
-            BankAccount object1 = new BankAccount(userInputName, userInputID);
-            object1.showMenu();
-        }
-        else if("No".equals(userOption)){
-            System.out.println("To verify your credentials please enter your name:");
-            
-        }
-        else{
-            System.out.println("Not a valid option!");
-        }
-        scanner.close();
-    }
+        
+            do{
+                System.out.print("ID:");
+                userInputID = scanner.next();
+        
+                System.out.print("Password:");
+                userInputPassword = scanner.next();
+
+                try{
+                    Scanner fileScanner = new Scanner(new File(filepath));
+                    fileScanner.useDelimiter("[,\n]");
+
+                    while(fileScanner.hasNext() && !found){
+                        tempID = fileScanner.next();
+                        tempPassword = fileScanner.next();
     
+                        if(tempID.trim().equals(userInputID.trim()) && tempPassword.trim().equals(userInputPassword.trim())){
+                            found = true;
+                            userName = fileScanner.next();
+                            userbalance = fileScanner.nextInt();
+                        }
+                        
+                    }
+                    fileScanner.close();
+                }catch(Exception e){
+                    System.out.println("Error. File not found");
+                }
+
+                if(found){
+                    BankAccount object1 = new BankAccount(userInputID, userName, userbalance);
+                    object1.showMenu();
+                }else{
+                    System.out.println("Credentials wrong. Login unsuccessful. Try again");
+                }
+
+            }while(!found);
+            scanner.close();
+    }
 }
